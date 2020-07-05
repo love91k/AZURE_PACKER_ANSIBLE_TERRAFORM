@@ -1,0 +1,17 @@
+---
+- name: Clone DEVOPS_WEB
+  git:
+    repo: https://github.com/love91k/DEVOPS_WEB.git
+    dest: /var/www/html/DEVOPS_WEB
+
+- name: Copy DEVOPS_WEB nginx configuration to sites-available
+  template:
+    src: templates/DEVOPS_WEB.conf.j2
+    dest: /etc/nginx/sites-available/DEVOPS_WEB.conf
+
+- name: Create sites-enabled symlink for nginx DEVOPS_WEB port 80 configuration
+  file:
+    src: /etc/nginx/sites-available/DEVOPS_WEB.conf
+    dest: /etc/nginx/sites-enabled/DEVOPS_WEB.conf
+    state: link
+  notify: restart nginx

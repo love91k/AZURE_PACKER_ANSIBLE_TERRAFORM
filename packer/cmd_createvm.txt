@@ -1,0 +1,2 @@
+az vm create  --resource-group testrg --name myVM --image myPackerImage --admin-username azureuser --generate-ssh-keys
+az vm open-port  --resource-group testrg --name myVM --port 80
